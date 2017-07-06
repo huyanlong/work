@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>updata</title>
+</head>
+<body>
+    <div id="charBox" style="width: 600px; height: 300px; margin: 50px auto;"></div>
+    <script type="text/javascript" src="echarts/build/dist/echarts.js"></script>
+    <script type="text/javascript">
+        require.config({
+            paths:{
+                echarts:'echarts/build/dist'
+            }
+        });
+        require(
+            [
+                'echarts',
+                'echarts/chart/bar'
+            ],
+            function (ec) {
+                var myChart=ec.init(document.getElementById('chartBox'));
+                var option={
+                    title:{
+                        show:true,
+                        text:'亚马逊销售量',
+                        link:'https://www.baidu.com',
+                        subtext:'2017年上半年各类目销售额',
+                        sublink:'www.163.com',
+                        x:'center',
+                        y:'top',
+                        textAlign:'center',
+                        backgroundColor:'rgba(0,0,0,.6)',
+                        borderColor:'#000',
+                        borderWidth:3,
+                        padding:[8,10,8,10],
+                        itemGap:12,
+                        textStyle:{
+                            fontSize:'20',
+                            fontWeight:'bold',
+                            color:'#fff'
+                        },
+                        subtextStyle:{
+                            color:'rgba(255,255,255,.6)'
+                        }
+                    },
+                    tooltip:{
+                        show:true,
+                        trigger:'axis',
+                        formatter:'{a}<br/>{b}:{c}',
+                        showDelay:100,
+                        hideDelay:100,
+                        backgroundColor:'rgba(0,0,255,.5)',
+                        borderColor:'#ccc',
+                        borderWidth:2,
+                        borderRadius:6,
+                        padding:[8,6,4,2],
+                        textStyle:{color:'#eee'},
+                        axisPointer:{
+                            type:'cross',
+                            crossStyle:{
+                                color:'#222',
+                                width:1,
+                                type:'dashed'
+                            }
+                        }
+                    },
+                    legend:{
+                        show:true,
+                        orient:'horizontal',
+                        x:'center',
+                        y:70,
+                        itemGap:5,
+                        itemWidth:16,
+                        itemHeight:10,
+                        textStyle:{color:'auto'},
+                        selectedMode:true,
+                        data:["AmazonLaunchpad","Appliances","Apps & Games","Arts, Crafts & Sewing","Automotive","Baby","Beauty & Personal Care"]
+                    },
+                    toolbox:{
+                        show:true,
+                        orient:'vertical',
+                        x:'right',
+                        y:70,
+                        feature : {
+                            mark : {show: true},
+                            dataView : {show: true, readOnly: false},
+                            restore : {show: true},
+                            saveAsImage : {show: true}
+                        }
+                    },
+                    calculable:true,
+
+
+
+                };
+                myChart.setOption(option);
+            }
+        );
+    </script>
+</body>
+</html>

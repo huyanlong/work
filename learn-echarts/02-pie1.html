@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>pie1</title>
+</head>
+<body>
+    <div id="main" style="width: 400px; height: 400px; margin: 100px auto;"></div>
+    <script type="text/javascript" src="echarts/build/dist/echarts.js"></script>
+    <script type="text/javascript">
+        require.config({
+            paths:{
+                echarts:'echarts/build/dist'
+            }
+        });
+        require(
+            [
+                'echarts',
+                'echarts/chart/pie',
+                'echarts/chart/funnel'
+            ],
+            function (ec) {
+                var myChart=ec.init(document.getElementById('main'));
+                var option={
+                    title:{
+                        text:'市场分布',
+                        subtext:'各手机品牌销售规模所占份额比例',
+                        x:'center',
+                        y:'30'
+                    },
+                    tooltip:{
+                        trigger:'item',
+                        formatter:"{a}<br/>{b}:{c}({d}%)"
+                    },
+                    legend:{
+//                        orient:'vertical',
+                        x:'center',
+                        y:'70',
+                        data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+                    },
+                    toolbox:{
+                        show:true,
+                        feature:{
+//                            mark:{show:true},
+                            dataView:{show:true,readOnly:false},
+                            magicType:{
+                                show:true,
+                                type:['pie','funnel'],
+                                option:{
+                                    funnel:{
+                                        x:'25%',
+                                        width:'50%',
+                                        funnelAlign:'left',
+                                        max:1548
+                                    }
+                                }
+                            },
+                            restore:{show:true},
+                            saveAsImage:{show:true}
+                        }
+                    },
+                    calculable:true,
+                    series:[
+                        {
+                            name:'访问来源',
+                            type:'pie',
+                            radius:'50%',
+                            center:['50%','60%'],
+                            data:[
+                                {value:335,name:'直接访问'},
+                                {value:310,name:'邮件营销'},
+                                {value:234,name:'联盟广告'},
+                                {value:135,name:'视频广告'},
+                                {value:1548,name:'搜索引擎'}
+                            ]
+                        }
+                    ]
+                };
+                myChart.setOption(option);
+            }
+        )
+    </script>
+</body>
+</html>
